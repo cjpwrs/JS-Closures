@@ -171,14 +171,16 @@ module.publicMethod();
 
 function timeOutCounter() {
   for (var i = 0; i <= 5; i++) {
-    setTimeout(function() {
-      console.log(i);
-    }, i * 1000)
-    newScope(i);
+    //var j = i;
+    setTimeout(function(j) {
+      return function() {
+        console.log(j);
+      }
+    }(i), i * 1000)
   }
 
   function newScope(i) {
-    console.log(i)
+    console.log(i);
   }
 }
 timeOutCounter();
