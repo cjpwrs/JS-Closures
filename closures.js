@@ -12,11 +12,13 @@ var outer = function(){
 // Invoke outer saving the return value into another variable called 'inner'.
 
 // Code Here
+var inner = outer();
 
 
 //Once you do that, invoke inner.
 
   //Code Here
+  inner();
 
 
 
@@ -36,6 +38,8 @@ var callFriend = function(){
 // Create a makeCall function that when invoked logs  'Calling Jake at 435-215-9248' in your console.
 
   //Code Here
+  var makeCall = callFriend();
+  console.log(makeCall('435-215-9248'));
 
 
 
@@ -52,13 +56,20 @@ var callFriend = function(){
 */
 
 //Code Here
+function makeCounter() {
+  var count=1;
+  return function increment() {
+    return count++;
+  }
+  //return increment;
+}
 
 //Uncomment this once you make your function
-//   var count = makeCounter();
-//   count(); // 1
-//   count(); // 2
-//   count(); // 3
-//   count(); // 4
+var count = makeCounter();
+console.log(count()); // 1
+console.log(count()); // 2
+count(); // 3
+count(); // 4
 
 
 
@@ -74,14 +85,25 @@ var callFriend = function(){
 function counterFactory(value) {
 
   // Code here.
-
+  function inc() {
+      value++;
+      return value;
+  }
+  function dec() {
+      value--;
+      return value;
+  }
 
   return {
+    inc: inc,
+    dec: dec
   }
 }
 
 
 counter = counterFactory(10);
+//counter.inc();
+//counter.dec();
 
 
 
@@ -96,11 +118,14 @@ counter = counterFactory(10);
     var welcomeText = 'You\'re doing awesome, keep it up ';
 
     // code message function here.
+    function message() {
+      return welcomeText + firstname + " " + lastname + ".";
+    }
 
 
     //Uncommment this to return the value of your invoked message function
 
-    //return message()
+    return message()
   }
 
   motivation('Billy', 'Bob'); // 'Your doing awesome keep it up Billy Bob
@@ -127,12 +152,15 @@ counter = counterFactory(10);
 
     return {
       // Code here.
+      publicMethod: function() {
+        return privateMethod();
+      }
     };
 
   })();
 
 //Uncomment this after you create your public method
-//   module.publicMethod();
+module.publicMethod();
 
 
 
@@ -146,6 +174,7 @@ function timeOutCounter() {
     setTimeout(function() {
       console.log(i);
     }, i * 1000)
+    newScope(i);
   }
 
   function newScope(i) {
@@ -161,7 +190,26 @@ timeOutCounter();
 
 //////////////////PROBLEM 8////////////////////
 
-var funcArray = [];
+var funcArray = [
+  function(){
+    return 0;
+  },
+  function(){
+    return 1;
+  },
+  function(){
+    return 2;
+  },
+  function(){
+    return 3;
+  },
+  function(){
+    return 4;
+  },
+  function(){
+    return 5;
+  }
+];
 
 /*
   Make the following code work
